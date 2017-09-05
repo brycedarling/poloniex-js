@@ -81,7 +81,7 @@ describe('Poloniex API', function () {
     });
 
     describe('when given valid currencyPair, period, start, and end', function () {
-      it('makes a request to the Poloniex API and returns a promise', function (done) {
+      it('requests returnChartData from the Poloniex API and returns a promise', function (done) {
         var currencyPair = 'USDT_BTC';
         var period = 300;
         var start = 0;
@@ -89,11 +89,18 @@ describe('Poloniex API', function () {
         (0, _index.returnChartData)({
           currencyPair: currencyPair, period: period, start: start, end: end
         }).then(function (response) {
-          var params = _url2.default.parse(response.request.responseURL, true).query;
-          expect(params.currencyPair).toEqual(currencyPair);
-          expect(params.period).toEqual(period.toString());
-          expect(params.start).toEqual(start.toString());
-          expect(params.end).toEqual(end.toString());
+          var _url$parse = _url2.default.parse(response.request.responseURL, true),
+              hostname = _url$parse.hostname,
+              pathname = _url$parse.pathname,
+              query = _url$parse.query;
+
+          expect(hostname).toEqual('poloniex.com');
+          expect(pathname).toEqual('/public');
+          expect(query.command).toEqual('returnChartData');
+          expect(query.currencyPair).toEqual(currencyPair);
+          expect(query.period).toEqual(period.toString());
+          expect(query.start).toEqual(start.toString());
+          expect(query.end).toEqual(end.toString());
           done();
         });
       });
@@ -145,13 +152,20 @@ describe('Poloniex API', function () {
     });
 
     describe('when given valid start and end', function () {
-      it('makes a request to the Poloniex API and returns a promise', function (done) {
+      it('requests returnTradeHistory from the Poloniex API and returns a promise', function (done) {
         var start = 300;
         var end = 600;
         (0, _index.returnTradeHistory)({ start: start, end: end }).then(function (response) {
-          var params = _url2.default.parse(response.request.responseURL, true).query;
-          expect(params.start).toEqual(start.toString());
-          expect(params.end).toEqual(end.toString());
+          var _url$parse2 = _url2.default.parse(response.request.responseURL, true),
+              hostname = _url$parse2.hostname,
+              pathname = _url$parse2.pathname,
+              query = _url$parse2.query;
+
+          expect(hostname).toEqual('poloniex.com');
+          expect(pathname).toEqual('/public');
+          expect(query.command).toEqual('returnTradeHistory');
+          expect(query.start).toEqual(start.toString());
+          expect(query.end).toEqual(end.toString());
           done();
         });
       });
