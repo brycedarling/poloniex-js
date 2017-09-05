@@ -9,6 +9,10 @@
 <dt><a href="#returnChartData">returnChartData(options)</a> ⇒ <code>Promise</code></dt>
 <dd><p>Returns candlestick chart data.</p>
 </dd>
+<dt><a href="#returnOrderBook">returnOrderBook(options)</a> ⇒ <code>Promise</code></dt>
+<dd><p>Returns the order book for a given market.
+You may set currencyPair to &quot;all&quot; to get the order books of all markets.</p>
+</dd>
 <dt><a href="#returnTicker">returnTicker()</a> ⇒ <code>Promise</code></dt>
 <dd><p>Returns the ticker for all markets.</p>
 </dd>
@@ -35,6 +39,19 @@ Returns candlestick chart data.
 | Param | Type | Description |
 | --- | --- | --- |
 | options | <code>Object</code> | currencyPair, period, start, end |
+
+<a name="returnOrderBook"></a>
+
+## returnOrderBook(options) ⇒ <code>Promise</code>
+Returns the order book for a given market.
+You may set currencyPair to "all" to get the order books of all markets.
+
+**Kind**: global function  
+**Returns**: <code>Promise</code> - response  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | currencyPair, depth |
 
 <a name="returnTicker"></a>
 
