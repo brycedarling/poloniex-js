@@ -4,6 +4,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _returnTicker = require('./returnTicker');
+
+Object.defineProperty(exports, 'returnTicker', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_returnTicker).default;
+  }
+});
+
 var _returnChartData = require('./returnChartData');
 
 Object.defineProperty(exports, 'returnChartData', {
