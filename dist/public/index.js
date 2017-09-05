@@ -13,6 +13,15 @@ Object.defineProperty(exports, 'returnTicker', {
   }
 });
 
+var _return24Volume = require('./return24Volume');
+
+Object.defineProperty(exports, 'return24Volume', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_return24Volume).default;
+  }
+});
+
 var _returnChartData = require('./returnChartData');
 
 Object.defineProperty(exports, 'returnChartData', {
