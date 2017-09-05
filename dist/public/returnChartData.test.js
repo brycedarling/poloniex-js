@@ -16,7 +16,7 @@ describe('Poloniex API', function () {
       it('throws an error', function () {
         expect(function () {
           return (0, _returnChartData2.default)({
-            currencyPair: 'currencyPair', period: 300, start: 0, end: 600
+            currencyPair: 'currencyPair', period: 300, start: 0
           });
         }).toThrow();
       });
@@ -26,7 +26,7 @@ describe('Poloniex API', function () {
       it('throws an error', function () {
         expect(function () {
           return (0, _returnChartData2.default)({
-            currencyPair: 'USDT_BTC', period: 'period', start: 0, end: 600
+            currencyPair: 'USDT_BTC', period: 'period', start: 0
           });
         }).toThrow();
       });
@@ -36,7 +36,7 @@ describe('Poloniex API', function () {
       it('throws an error', function () {
         expect(function () {
           return (0, _returnChartData2.default)({
-            currencyPair: 'USDT_BTC', period: 300, start: 'start', end: 600
+            currencyPair: 'USDT_BTC', period: 300, start: 'start'
           });
         }).toThrow();
       });
@@ -46,7 +46,7 @@ describe('Poloniex API', function () {
       it('throws an error', function () {
         expect(function () {
           return (0, _returnChartData2.default)({
-            currencyPair: 'USDT_BTC', period: 300, start: -1, end: 600
+            currencyPair: 'USDT_BTC', period: 300, start: -1
           });
         }).toThrow();
       });
@@ -62,11 +62,11 @@ describe('Poloniex API', function () {
       });
     });
 
-    describe('when end is greater than 9999999999', function () {
+    describe('when end is a negative number', function () {
       it('throws an error', function () {
         expect(function () {
           return (0, _returnChartData2.default)({
-            currencyPair: 'USDT_BTC', period: 300, start: 0, end: 9999999999 + 1
+            currencyPair: 'USDT_BTC', period: 300, start: 0, end: -1
           });
         }).toThrow();
       });
@@ -104,6 +104,31 @@ describe('Poloniex API', function () {
           expect(query.start).toEqual(start.toString());
           expect(query.end).toEqual(end.toString());
           done();
+        });
+      });
+
+      describe('when given valid currencyPair, period, and start', function () {
+        it('requests returnChartData and returns a promise', function (done) {
+          var currencyPair = 'USDT_BTC';
+          var period = 300;
+          var start = 0;
+          var end = 600;
+          (0, _returnChartData2.default)({
+            currencyPair: currencyPair, period: period, start: start, end: end
+          }).then(function (response) {
+            var _url$parse2 = _url2.default.parse(response.request.responseURL, true),
+                hostname = _url$parse2.hostname,
+                pathname = _url$parse2.pathname,
+                query = _url$parse2.query;
+
+            expect(hostname).toEqual('poloniex.com');
+            expect(pathname).toEqual('/public');
+            expect(query.command).toEqual('returnChartData');
+            expect(query.currencyPair).toEqual(currencyPair);
+            expect(query.period).toEqual(period.toString());
+            expect(query.start).toEqual(start.toString());
+            done();
+          });
         });
       });
     });

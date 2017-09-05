@@ -3,7 +3,13 @@ import client from '../client';
 import currencyPairs from '../currencyPairs';
 import periods from '../periods';
 
-// TODO: document method arguments, currencyPair and period and start and end, all required
+/**
+* Returns candlestick chart data.
+* @namespace poloniex
+* @method returnChartData
+* @param {Object} options - currencyPair, period, start, end
+* @return {Promise} response
+*/
 export default ({
   currencyPair, period, start, end,
 }) => {
@@ -19,14 +25,16 @@ export default ({
     typeof start === 'number' && start >= 0,
     `Invalid start, ${start}, must be a non-negative number`,
   );
-  assert(
-    typeof end === 'number' && end < 9999999999,
-    `Invalid end, ${end}, must be a number less than 9999999999`,
-  );
-  assert(
-    end >= start + period,
-    `Invalid end, ${end}, must be >= start + period (${start + period})`,
-  );
+  if (typeof end !== 'undefined') {
+    assert(
+      typeof end === 'number' && end >= 0,
+      `Invalid end, ${end}, must be a non-negative number`,
+    );
+    assert(
+      end >= start + period,
+      `Invalid end, ${end}, must be >= start + period (${start + period})`,
+    );
+  }
 
   return client.get('/public', {
     params: {
