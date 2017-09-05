@@ -58,4 +58,13 @@ Object.defineProperty(exports, 'returnCurrencies', {
   }
 });
 
+var _returnLoanOrders = require('./returnLoanOrders');
+
+Object.defineProperty(exports, 'returnLoanOrders', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_returnLoanOrders).default;
+  }
+});
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
