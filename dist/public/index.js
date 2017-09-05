@@ -22,12 +22,12 @@ Object.defineProperty(exports, 'return24Volume', {
   }
 });
 
-var _returnChartData = require('./returnChartData');
+var _returnOrderBook = require('./returnOrderBook');
 
-Object.defineProperty(exports, 'returnChartData', {
+Object.defineProperty(exports, 'returnOrderBook', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_returnChartData).default;
+    return _interopRequireDefault(_returnOrderBook).default;
   }
 });
 
@@ -37,6 +37,15 @@ Object.defineProperty(exports, 'returnTradeHistory', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_returnTradeHistory).default;
+  }
+});
+
+var _returnChartData = require('./returnChartData');
+
+Object.defineProperty(exports, 'returnChartData', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_returnChartData).default;
   }
 });
 
