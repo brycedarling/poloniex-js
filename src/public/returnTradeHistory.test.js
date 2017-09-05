@@ -1,7 +1,7 @@
 import url from 'url';
 import returnTradeHistory from './returnTradeHistory';
 
-describe('Poloniex API', () => {
+describe('Poloniex Public API', () => {
   describe('returnTradeHistory', () => {
     describe('when start is not a number', () => {
       it('throws an error', () => {

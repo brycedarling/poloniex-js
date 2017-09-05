@@ -10,7 +10,7 @@ var _returnTradeHistory2 = _interopRequireDefault(_returnTradeHistory);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-describe('Poloniex API', function () {
+describe('Poloniex Public API', function () {
   describe('returnTradeHistory', function () {
     describe('when start is not a number', function () {
       it('throws an error', function () {

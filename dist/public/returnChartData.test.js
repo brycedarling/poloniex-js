@@ -10,7 +10,7 @@ var _returnChartData2 = _interopRequireDefault(_returnChartData);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-describe('Poloniex API', function () {
+describe('Poloniex Public API', function () {
   describe('returnChartData', function () {
     describe('when currencyPair is not in the list of currency pairs', function () {
       it('throws an error', function () {

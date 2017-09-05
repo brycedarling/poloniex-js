@@ -1,7 +1,7 @@
 import url from 'url';
 import returnChartData from './returnChartData';
 
-describe('Poloniex API', () => {
+describe('Poloniex Public API', () => {
   describe('returnChartData', () => {
     describe('when currencyPair is not in the list of currency pairs', () => {
       it('throws an error', () => {
