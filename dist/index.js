@@ -4,6 +4,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _currencies = require('./currencies');
+
+Object.defineProperty(exports, 'currencies', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_currencies).default;
+  }
+});
+
 var _currencyPairs = require('./currencyPairs');
 
 Object.defineProperty(exports, 'currencyPairs', {
