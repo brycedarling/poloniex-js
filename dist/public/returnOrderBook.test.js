@@ -10,9 +10,6 @@ var _returnOrderBook2 = _interopRequireDefault(_returnOrderBook);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_NXT&depth=10
-// currencyPair can also be "all"
-
 describe('Poloniex Public API', function () {
   describe('returnOrderBook', function () {
     describe('when currencyPair is not in the list of currency pairs', function () {
@@ -35,9 +32,9 @@ describe('Poloniex Public API', function () {
       });
     });
 
-    describe('when given valid currencyPair', function () {
+    describe('when currencyPair is all', function () {
       it('requests returnOrderBook and returns a promise', function (done) {
-        var currencyPair = 'USDT_BTC';
+        var currencyPair = 'all';
         (0, _returnOrderBook2.default)({ currencyPair: currencyPair }).then(function (response) {
           var _url$parse = _url2.default.parse(response.request.responseURL, true),
               hostname = _url$parse.hostname,
@@ -53,15 +50,33 @@ describe('Poloniex Public API', function () {
       });
     });
 
+    describe('when given valid currencyPair', function () {
+      it('requests returnOrderBook and returns a promise', function (done) {
+        var currencyPair = 'USDT_BTC';
+        (0, _returnOrderBook2.default)({ currencyPair: currencyPair }).then(function (response) {
+          var _url$parse2 = _url2.default.parse(response.request.responseURL, true),
+              hostname = _url$parse2.hostname,
+              pathname = _url$parse2.pathname,
+              query = _url$parse2.query;
+
+          expect(hostname).toEqual('poloniex.com');
+          expect(pathname).toEqual('/public');
+          expect(query.command).toEqual('returnOrderBook');
+          expect(query.currencyPair).toEqual(currencyPair);
+          done();
+        });
+      });
+    });
+
     describe('when given valid currencyPair and depth', function () {
       it('requests returnOrderBook and returns a promise', function (done) {
         var currencyPair = 'USDT_BTC';
         var depth = 10;
         (0, _returnOrderBook2.default)({ currencyPair: currencyPair, depth: depth }).then(function (response) {
-          var _url$parse2 = _url2.default.parse(response.request.responseURL, true),
-              hostname = _url$parse2.hostname,
-              pathname = _url$parse2.pathname,
-              query = _url$parse2.query;
+          var _url$parse3 = _url2.default.parse(response.request.responseURL, true),
+              hostname = _url$parse3.hostname,
+              pathname = _url$parse3.pathname,
+              query = _url$parse3.query;
 
           expect(hostname).toEqual('poloniex.com');
           expect(pathname).toEqual('/public');

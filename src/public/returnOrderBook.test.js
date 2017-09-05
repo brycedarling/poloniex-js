@@ -1,6 +1,3 @@
-// https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_NXT&depth=10
-// currencyPair can also be "all"
-
 import url from 'url';
 import returnOrderBook from './returnOrderBook';
 
@@ -19,6 +16,20 @@ describe('Poloniex Public API', () => {
         expect(() => returnOrderBook({
           currencyPair: 'USDT_BTC', depth: 'depth',
         })).toThrow();
+      });
+    });
+
+    describe('when currencyPair is all', () => {
+      it('requests returnOrderBook and returns a promise', (done) => {
+        const currencyPair = 'all';
+        returnOrderBook({ currencyPair }).then((response) => {
+          const { hostname, pathname, query } = url.parse(response.request.responseURL, true);
+          expect(hostname).toEqual('poloniex.com');
+          expect(pathname).toEqual('/public');
+          expect(query.command).toEqual('returnOrderBook');
+          expect(query.currencyPair).toEqual(currencyPair);
+          done();
+        });
       });
     });
 

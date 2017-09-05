@@ -30,7 +30,7 @@ exports.default = function (_ref) {
   var currencyPair = _ref.currencyPair,
       depth = _ref.depth;
 
-  (0, _assert2.default)(_currencyPairs2.default[currencyPair], 'Invalid currencyPair, ' + currencyPair + ', must be one of: ' + Object.keys(_currencyPairs2.default).join(', '));
+  (0, _assert2.default)(currencyPair === 'all' || _currencyPairs2.default[currencyPair], 'Invalid currencyPair, ' + currencyPair + ', must be one of: all, ' + Object.keys(_currencyPairs2.default).join(', '));
 
   if (typeof depth !== 'undefined') {
     (0, _assert2.default)(typeof depth === 'number', 'Invalid depth, ' + depth + ', must be a number');

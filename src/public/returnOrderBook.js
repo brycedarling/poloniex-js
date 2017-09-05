@@ -12,8 +12,8 @@ import currencyPairs from '../currencyPairs';
 */
 export default ({ currencyPair, depth }) => {
   assert(
-    currencyPairs[currencyPair],
-    `Invalid currencyPair, ${currencyPair}, must be one of: ${Object.keys(currencyPairs).join(', ')}`,
+    currencyPair === 'all' || currencyPairs[currencyPair],
+    `Invalid currencyPair, ${currencyPair}, must be one of: all, ${Object.keys(currencyPairs).join(', ')}`,
   );
 
   if (typeof depth !== 'undefined') {
