@@ -14,7 +14,13 @@ var _client2 = _interopRequireDefault(_client);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// TODO: document method arguments, start and end, all optional
+/**
+* Returns trade history for a given market.
+* @namespace poloniex
+* @method returnTradeHistory
+* @param {Object} options - start and end are both optional
+* @return {Promise} response
+*/
 exports.default = function () {
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 

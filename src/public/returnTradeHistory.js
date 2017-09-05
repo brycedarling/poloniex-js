@@ -1,7 +1,13 @@
 import assert from '../assert';
 import client from '../client';
 
-// TODO: document method arguments, start and end, all optional
+/**
+* Returns trade history for a given market.
+* @namespace poloniex
+* @method returnTradeHistory
+* @param {Object} options - start and end are both optional
+* @return {Promise} response
+*/
 export default (options = {}) => {
   if (typeof options.start !== 'undefined') {
     assert(
