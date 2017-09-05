@@ -1,8 +1,5 @@
 import url from 'url';
-import {
-  returnChartData,
-  returnTradeHistory,
-} from './index';
+import returnChartData from './returnChartData';
 
 describe('Poloniex API', () => {
   describe('returnChartData', () => {
@@ -63,7 +60,7 @@ describe('Poloniex API', () => {
     });
 
     describe('when given valid currencyPair, period, start, and end', () => {
-      it('requests returnChartData from the Poloniex API and returns a promise', (done) => {
+      it('requests returnChartData and returns a promise', (done) => {
         const currencyPair = 'USDT_BTC';
         const period = 300;
         const start = 0;
@@ -77,55 +74,6 @@ describe('Poloniex API', () => {
           expect(query.command).toEqual('returnChartData');
           expect(query.currencyPair).toEqual(currencyPair);
           expect(query.period).toEqual(period.toString());
-          expect(query.start).toEqual(start.toString());
-          expect(query.end).toEqual(end.toString());
-          done();
-        });
-      });
-    });
-  });
-
-  describe('returnTradeHistory', () => {
-    describe('when start is not a number', () => {
-      it('throws an error', () => {
-        expect(() => returnTradeHistory({ start: 'start', end: 600 })).toThrow();
-      });
-    });
-
-    describe('when start is a negative number', () => {
-      it('throws an error', () => {
-        expect(() => returnTradeHistory({ start: -1, end: 600 })).toThrow();
-      });
-    });
-
-    describe('when end is not a number', () => {
-      it('throws an error', () => {
-        expect(() => returnTradeHistory({ start: 0, end: 'end' })).toThrow();
-      });
-    });
-
-    describe('when end is greater than 9999999999', () => {
-      it('throws an error', () => {
-        expect(() => returnTradeHistory({ start: 0, end: 9999999999 + 1 })).toThrow();
-      });
-    });
-
-    describe('when end is less than or equal to start', () => {
-      it('throws an error', () => {
-        expect(() => returnTradeHistory({ start: 1, end: 0 })).toThrow();
-        expect(() => returnTradeHistory({ start: 0, end: 0 })).toThrow();
-      });
-    });
-
-    describe('when given valid start and end', () => {
-      it('requests returnTradeHistory from the Poloniex API and returns a promise', (done) => {
-        const start = 300;
-        const end = 600;
-        returnTradeHistory({ start, end }).then((response) => {
-          const { hostname, pathname, query } = url.parse(response.request.responseURL, true);
-          expect(hostname).toEqual('poloniex.com');
-          expect(pathname).toEqual('/public');
-          expect(query.command).toEqual('returnTradeHistory');
           expect(query.start).toEqual(start.toString());
           expect(query.end).toEqual(end.toString());
           done();
