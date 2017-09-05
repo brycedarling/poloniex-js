@@ -33,7 +33,7 @@ describe('Poloniex Public API', function () {
 
           expect(hostname).toEqual('poloniex.com');
           expect(pathname).toEqual('/public');
-          expect(query.command).toEqual('returnOrderBook');
+          expect(query.command).toEqual('returnLoanOrders');
           expect(query.currency).toEqual(currency);
           done();
         });
