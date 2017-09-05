@@ -12,6 +12,9 @@
 <dt><a href="#returnCurrencies">returnCurrencies()</a> ⇒ <code>Promise</code></dt>
 <dd><p>Returns information about currencies.</p>
 </dd>
+<dt><a href="#returnLoanOrders">returnLoanOrders(options)</a> ⇒ <code>Promise</code></dt>
+<dd><p>Returns the list of loan offers and demands for a given currency.</p>
+</dd>
 <dt><a href="#returnOrderBook">returnOrderBook(options)</a> ⇒ <code>Promise</code></dt>
 <dd><p>Returns the order book for a given market.
 You may set currencyPair to &quot;all&quot; to get the order books of all markets.</p>
@@ -50,6 +53,18 @@ Returns information about currencies.
 
 **Kind**: global function  
 **Returns**: <code>Promise</code> - response  
+<a name="returnLoanOrders"></a>
+
+## returnLoanOrders(options) ⇒ <code>Promise</code>
+Returns the list of loan offers and demands for a given currency.
+
+**Kind**: global function  
+**Returns**: <code>Promise</code> - response  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | currency |
+
 <a name="returnOrderBook"></a>
 
 ## returnOrderBook(options) ⇒ <code>Promise</code>
