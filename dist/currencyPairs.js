@@ -10,14 +10,11 @@ var markets = {
   USDT: ['BCH', 'BTC', 'DASH', 'ETC', 'ETH', 'LTC', 'NXT', 'REP', 'STR', 'XMR', 'XRP', 'ZEC']
 };
 
-var currencyPairs = {};
-
-Object.keys(markets).forEach(function (market) {
-  var currencies = markets[market];
-  currencies.forEach(function (currency) {
+exports.default = Object.keys(markets).reduce(function (currencyPairs, market) {
+  /* eslint-disable no-param-reassign */
+  markets[market].forEach(function (currency) {
     var currencyPair = market + '_' + currency;
     currencyPairs[currencyPair] = currencyPair;
   });
-});
-
-exports.default = currencyPairs;
+  return currencyPairs;
+}, {});

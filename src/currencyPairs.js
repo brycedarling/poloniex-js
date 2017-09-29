@@ -12,14 +12,11 @@ const markets = {
   USDT: ['BCH', 'BTC', 'DASH', 'ETC', 'ETH', 'LTC', 'NXT', 'REP', 'STR', 'XMR', 'XRP', 'ZEC'],
 };
 
-const currencyPairs = {};
-
-Object.keys(markets).forEach((market) => {
-  const currencies = markets[market];
-  currencies.forEach((currency) => {
+export default Object.keys(markets).reduce((currencyPairs, market) => {
+  /* eslint-disable no-param-reassign */
+  markets[market].forEach((currency) => {
     const currencyPair = `${market}_${currency}`;
     currencyPairs[currencyPair] = currencyPair;
   });
-});
-
-export default currencyPairs;
+  return currencyPairs;
+}, {});
