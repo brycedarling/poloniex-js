@@ -17,7 +17,8 @@ const currencyPairs = {};
 Object.keys(markets).forEach((market) => {
   const currencies = markets[market];
   currencies.forEach((currency) => {
-    currencyPairs[`${market}_${currency}`] = true;
+    const currencyPair = `${market}_${currency}`;
+    currencyPairs[currencyPair] = currencyPair;
   });
 });
 
