@@ -1,4 +1,4 @@
-export default {
+export default Object.keys({
   AMP: true,
   ARDR: true,
   BCH: true,
@@ -67,4 +67,8 @@ export default {
   XVC: true,
   ZEC: true,
   ZRX: true,
-};
+}).reduce((currencies, currency) => {
+  /* eslint-disable no-param-reassign */
+  currencies[currency] = currency;
+  return currencies;
+}, {});

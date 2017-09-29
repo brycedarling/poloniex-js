@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = {
+exports.default = Object.keys({
   AMP: true,
   ARDR: true,
   BCH: true,
@@ -72,4 +72,8 @@ exports.default = {
   XVC: true,
   ZEC: true,
   ZRX: true
-};
+}).reduce(function (currencies, currency) {
+  /* eslint-disable no-param-reassign */
+  currencies[currency] = currency;
+  return currencies;
+}, {});
