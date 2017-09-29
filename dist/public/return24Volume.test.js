@@ -21,7 +21,7 @@ describe('Poloniex Public API', function () {
 
         expect(hostname).toEqual('poloniex.com');
         expect(pathname).toEqual('/public');
-        expect(query.command).toEqual('return24Volume');
+        expect(query.command).toEqual('return24hVolume');
         done();
       });
     });

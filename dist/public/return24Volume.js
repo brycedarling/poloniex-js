@@ -19,7 +19,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = function () {
   return _client2.default.get('/public', {
     params: {
-      command: 'return24Volume'
+      command: 'return24hVolume'
     }
   });
 };
