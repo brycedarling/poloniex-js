@@ -10,6 +10,8 @@ var _returnTradeHistory2 = _interopRequireDefault(_returnTradeHistory);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 describe('Poloniex Public API', function () {
   describe('returnTradeHistory', function () {
     describe('when start is not a number', function () {
@@ -56,23 +58,35 @@ describe('Poloniex Public API', function () {
     });
 
     describe('when given valid start and end', function () {
-      it('requests returnTradeHistory and returns a promise', function (done) {
-        var start = 300;
-        var end = 600;
-        (0, _returnTradeHistory2.default)({ start: start, end: end }).then(function (response) {
-          var _url$parse = _url2.default.parse(response.request.responseURL, true),
-              hostname = _url$parse.hostname,
-              pathname = _url$parse.pathname,
-              query = _url$parse.query;
+      it('requests returnTradeHistory and returns a promise', _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var start, end, response, _url$parse, hostname, pathname, query;
 
-          expect(hostname).toEqual('poloniex.com');
-          expect(pathname).toEqual('/public');
-          expect(query.command).toEqual('returnTradeHistory');
-          expect(query.start).toEqual(start.toString());
-          expect(query.end).toEqual(end.toString());
-          done();
-        });
-      });
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                start = 300;
+                end = 600;
+                _context.next = 4;
+                return (0, _returnTradeHistory2.default)({ start: start, end: end });
+
+              case 4:
+                response = _context.sent;
+                _url$parse = _url2.default.parse(response.request.responseURL, true), hostname = _url$parse.hostname, pathname = _url$parse.pathname, query = _url$parse.query;
+
+                expect(hostname).toEqual('poloniex.com');
+                expect(pathname).toEqual('/public');
+                expect(query.command).toEqual('returnTradeHistory');
+                expect(query.start).toEqual(start.toString());
+                expect(query.end).toEqual(end.toString());
+
+              case 11:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, undefined);
+      })));
     });
   });
 });

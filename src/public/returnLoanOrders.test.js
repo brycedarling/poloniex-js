@@ -12,16 +12,14 @@ describe('Poloniex Public API', () => {
     });
 
     describe('when given valid currency', () => {
-      it('requests returnLoanOrders and returns a promise', (done) => {
+      it('requests returnLoanOrders and returns a promise', async () => {
         const currency = 'BTC';
-        returnLoanOrders({ currency }).then((response) => {
-          const { hostname, pathname, query } = url.parse(response.request.responseURL, true);
-          expect(hostname).toEqual('poloniex.com');
-          expect(pathname).toEqual('/public');
-          expect(query.command).toEqual('returnLoanOrders');
-          expect(query.currency).toEqual(currency);
-          done();
-        });
+        const response = await returnLoanOrders({ currency });
+        const { hostname, pathname, query } = url.parse(response.request.responseURL, true);
+        expect(hostname).toEqual('poloniex.com');
+        expect(pathname).toEqual('/public');
+        expect(query.command).toEqual('returnLoanOrders');
+        expect(query.currency).toEqual(currency);
       });
     });
   });

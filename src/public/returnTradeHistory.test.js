@@ -35,18 +35,16 @@ describe('Poloniex Public API', () => {
     });
 
     describe('when given valid start and end', () => {
-      it('requests returnTradeHistory and returns a promise', (done) => {
+      it('requests returnTradeHistory and returns a promise', async () => {
         const start = 300;
         const end = 600;
-        returnTradeHistory({ start, end }).then((response) => {
-          const { hostname, pathname, query } = url.parse(response.request.responseURL, true);
-          expect(hostname).toEqual('poloniex.com');
-          expect(pathname).toEqual('/public');
-          expect(query.command).toEqual('returnTradeHistory');
-          expect(query.start).toEqual(start.toString());
-          expect(query.end).toEqual(end.toString());
-          done();
-        });
+        const response = await returnTradeHistory({ start, end });
+        const { hostname, pathname, query } = url.parse(response.request.responseURL, true);
+        expect(hostname).toEqual('poloniex.com');
+        expect(pathname).toEqual('/public');
+        expect(query.command).toEqual('returnTradeHistory');
+        expect(query.start).toEqual(start.toString());
+        expect(query.end).toEqual(end.toString());
       });
     });
   });

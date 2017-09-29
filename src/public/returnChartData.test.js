@@ -60,14 +60,33 @@ describe('Poloniex Public API', () => {
     });
 
     describe('when given valid currencyPair, period, start, and end', () => {
-      it('requests returnChartData and returns a promise', (done) => {
+      it('requests returnChartData and returns a promise', async () => {
         const currencyPair = 'USDT_BTC';
         const period = 300;
         const start = 0;
         const end = 600;
-        returnChartData({
+        const response = await returnChartData({
           currencyPair, period, start, end,
-        }).then((response) => {
+        });
+        const { hostname, pathname, query } = url.parse(response.request.responseURL, true);
+        expect(hostname).toEqual('poloniex.com');
+        expect(pathname).toEqual('/public');
+        expect(query.command).toEqual('returnChartData');
+        expect(query.currencyPair).toEqual(currencyPair);
+        expect(query.period).toEqual(period.toString());
+        expect(query.start).toEqual(start.toString());
+        expect(query.end).toEqual(end.toString());
+      });
+
+      describe('when given valid currencyPair, period, and start', () => {
+        it('requests returnChartData and returns a promise', async () => {
+          const currencyPair = 'USDT_BTC';
+          const period = 300;
+          const start = 0;
+          const end = 600;
+          const response = await returnChartData({
+            currencyPair, period, start, end,
+          });
           const { hostname, pathname, query } = url.parse(response.request.responseURL, true);
           expect(hostname).toEqual('poloniex.com');
           expect(pathname).toEqual('/public');
@@ -75,29 +94,6 @@ describe('Poloniex Public API', () => {
           expect(query.currencyPair).toEqual(currencyPair);
           expect(query.period).toEqual(period.toString());
           expect(query.start).toEqual(start.toString());
-          expect(query.end).toEqual(end.toString());
-          done();
-        });
-      });
-
-      describe('when given valid currencyPair, period, and start', () => {
-        it('requests returnChartData and returns a promise', (done) => {
-          const currencyPair = 'USDT_BTC';
-          const period = 300;
-          const start = 0;
-          const end = 600;
-          returnChartData({
-            currencyPair, period, start, end,
-          }).then((response) => {
-            const { hostname, pathname, query } = url.parse(response.request.responseURL, true);
-            expect(hostname).toEqual('poloniex.com');
-            expect(pathname).toEqual('/public');
-            expect(query.command).toEqual('returnChartData');
-            expect(query.currencyPair).toEqual(currencyPair);
-            expect(query.period).toEqual(period.toString());
-            expect(query.start).toEqual(start.toString());
-            done();
-          });
         });
       });
     });
