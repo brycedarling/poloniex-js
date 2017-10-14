@@ -78,23 +78,43 @@ describe('Poloniex Public API', () => {
         expect(query.end).toEqual(end.toString());
       });
 
-      describe('when given valid currencyPair, period, and start', () => {
-        it('requests returnChartData and returns a promise', async () => {
-          const currencyPair = 'USDT_BTC';
-          const period = 300;
-          const start = 0;
-          const end = 600;
-          const response = await returnChartData({
-            currencyPair, period, start, end,
-          });
-          const { hostname, pathname, query } = url.parse(response.request.responseURL, true);
-          expect(hostname).toEqual('poloniex.com');
-          expect(pathname).toEqual('/public');
-          expect(query.command).toEqual('returnChartData');
-          expect(query.currencyPair).toEqual(currencyPair);
-          expect(query.period).toEqual(period.toString());
-          expect(query.start).toEqual(start.toString());
+      it('returns dates that are Date objects', async () => {
+        const currencyPair = 'USDT_BTC';
+        const period = 300;
+        const start = 0;
+        const end = 600;
+        const response = await returnChartData({
+          currencyPair, period, start, end,
         });
+        expect(response.data[0].date).toBeInstanceOf(Date);
+      });
+    });
+
+    describe('when given valid currencyPair, period, and start', () => {
+      it('requests returnChartData and returns a promise', async () => {
+        const currencyPair = 'USDT_BTC';
+        const period = 300;
+        const start = Date.now() - 1000;
+        const response = await returnChartData({
+          currencyPair, period, start,
+        });
+        const { hostname, pathname, query } = url.parse(response.request.responseURL, true);
+        expect(hostname).toEqual('poloniex.com');
+        expect(pathname).toEqual('/public');
+        expect(query.command).toEqual('returnChartData');
+        expect(query.currencyPair).toEqual(currencyPair);
+        expect(query.period).toEqual(period.toString());
+        expect(query.start).toEqual(start.toString());
+      });
+
+      it('returns dates that are Date objects', async () => {
+        const currencyPair = 'USDT_BTC';
+        const period = 300;
+        const start = Date.now() - 1000;
+        const response = await returnChartData({
+          currencyPair, period, start,
+        });
+        expect(response.data[0].date).toBeInstanceOf(Date);
       });
     });
   });

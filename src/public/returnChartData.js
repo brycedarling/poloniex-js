@@ -36,13 +36,26 @@ export default ({
     );
   }
 
-  return client.get('/public', {
-    params: {
-      command: 'returnChartData',
-      currencyPair,
-      start,
-      end,
-      period,
-    },
+  const params = {
+    command: 'returnChartData',
+    currencyPair,
+    start,
+    period,
+  };
+
+  if (typeof end !== 'undefined') {
+    params.end = end;
+  }
+
+  const promise = client.get('/public', {
+    params,
   });
+
+  promise.then((response) => {
+    response.data.forEach((tick) => {
+      tick.date = new Date(tick.date * 1000); // eslint-disable-line no-param-reassign
+    });
+  });
+
+  return promise;
 };

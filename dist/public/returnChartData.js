@@ -43,13 +43,26 @@ exports.default = function (_ref) {
     (0, _assert2.default)(end >= start + period, 'Invalid end, ' + end + ', must be >= start + period (' + (start + period) + ')');
   }
 
-  return _client2.default.get('/public', {
-    params: {
-      command: 'returnChartData',
-      currencyPair: currencyPair,
-      start: start,
-      end: end,
-      period: period
-    }
+  var params = {
+    command: 'returnChartData',
+    currencyPair: currencyPair,
+    start: start,
+    period: period
+  };
+
+  if (typeof end !== 'undefined') {
+    params.end = end;
+  }
+
+  var promise = _client2.default.get('/public', {
+    params: params
   });
+
+  promise.then(function (response) {
+    response.data.forEach(function (tick) {
+      tick.date = new Date(tick.date * 1000); // eslint-disable-line no-param-reassign
+    });
+  });
+
+  return promise;
 };
