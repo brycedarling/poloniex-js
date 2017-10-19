@@ -22,7 +22,7 @@
   "scripts": {
     "build": "babel src -d dist",
     "dev": "yarn reset && yarn build && echo && yarn test && echo && yarn lint",
-    "docs": "yarn reset && yarn build && echo '# poloniex-js\n' > README.md && jsdoc2md dist/**/*.js >> README.md",
+    "docs": "yarn reset && yarn build && cat usage.md > README.md && jsdoc2md dist/**/*.js >> README.md",
     "lint": "eslint src",
     "reset": "rm -rf dist && mkdir dist",
     "test": "jest dist"
