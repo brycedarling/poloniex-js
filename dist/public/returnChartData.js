@@ -23,12 +23,12 @@ var _periods2 = _interopRequireDefault(_periods);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
-* Returns candlestick chart data.
-* @namespace poloniex
-* @method returnChartData
-* @param {Object} options - currencyPair, period, start, end
-* @return {Promise} response
-*/
+ * Returns candlestick chart data.
+ * @function returnChartData
+ * @static
+ * @param {object} options - currencyPair, period, start, end
+ * @return {Promise} response
+ */
 exports.default = function (_ref) {
   var currencyPair = _ref.currencyPair,
       period = _ref.period,

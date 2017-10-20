@@ -19,12 +19,12 @@ var _currencies2 = _interopRequireDefault(_currencies);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
-* Returns the list of loan offers and demands for a given currency.
-* @namespace poloniex
-* @method returnLoanOrders
-* @param {Object} options - currency
-* @return {Promise} response
-*/
+ * Returns the list of loan offers and demands for a given currency.
+ * @function returnLoanOrders
+ * @static
+ * @param {object} options - currency
+ * @return {Promise} response
+ */
 exports.default = function (_ref) {
   var currency = _ref.currency;
 

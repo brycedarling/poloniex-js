@@ -2,12 +2,12 @@ import assert from '../assert';
 import client from '../client';
 
 /**
-* Returns trade history for a given market.
-* @namespace poloniex
-* @method returnTradeHistory
-* @param {Object} options - start and end are both optional
-* @return {Promise} response
-*/
+ * Returns trade history for a given market.
+ * @function returnTradeHistory
+ * @static
+ * @param {object} options - start and end are both optional
+ * @return {Promise} response
+ */
 export default (options = {}) => {
   if (typeof options.start !== 'undefined') {
     assert(

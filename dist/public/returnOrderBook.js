@@ -19,13 +19,13 @@ var _currencyPairs2 = _interopRequireDefault(_currencyPairs);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
-* Returns the order book for a given market.
-* You may set currencyPair to "all" to get the order books of all markets.
-* @namespace poloniex
-* @method returnOrderBook
-* @param {Object} options - currencyPair, depth
-* @return {Promise} response
-*/
+ * Returns the order book for a given market.
+ * You may set currencyPair to "all" to get the order books of all markets.
+ * @function returnOrderBook
+ * @static
+ * @param {object} options - currencyPair, depth
+ * @return {Promise} response
+ */
 exports.default = function (_ref) {
   var currencyPair = _ref.currencyPair,
       depth = _ref.depth;

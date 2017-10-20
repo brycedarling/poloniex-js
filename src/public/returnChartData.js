@@ -4,12 +4,12 @@ import currencyPairs from '../currencyPairs';
 import periods from '../periods';
 
 /**
-* Returns candlestick chart data.
-* @namespace poloniex
-* @method returnChartData
-* @param {Object} options - currencyPair, period, start, end
-* @return {Promise} response
-*/
+ * Returns candlestick chart data.
+ * @function returnChartData
+ * @static
+ * @param {object} options - currencyPair, period, start, end
+ * @return {Promise} response
+ */
 export default ({
   currencyPair, period, start, end,
 }) => {

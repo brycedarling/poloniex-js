@@ -3,12 +3,12 @@ import client from '../client';
 import currencies from '../currencies';
 
 /**
-* Returns the list of loan offers and demands for a given currency.
-* @namespace poloniex
-* @method returnLoanOrders
-* @param {Object} options - currency
-* @return {Promise} response
-*/
+ * Returns the list of loan offers and demands for a given currency.
+ * @function returnLoanOrders
+ * @static
+ * @param {object} options - currency
+ * @return {Promise} response
+ */
 export default ({ currency }) => {
   assert(
     currencies[currency],

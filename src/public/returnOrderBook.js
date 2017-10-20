@@ -3,13 +3,13 @@ import client from '../client';
 import currencyPairs from '../currencyPairs';
 
 /**
-* Returns the order book for a given market.
-* You may set currencyPair to "all" to get the order books of all markets.
-* @namespace poloniex
-* @method returnOrderBook
-* @param {Object} options - currencyPair, depth
-* @return {Promise} response
-*/
+ * Returns the order book for a given market.
+ * You may set currencyPair to "all" to get the order books of all markets.
+ * @function returnOrderBook
+ * @static
+ * @param {object} options - currencyPair, depth
+ * @return {Promise} response
+ */
 export default ({ currencyPair, depth }) => {
   assert(
     currencyPair === 'all' || currencyPairs[currencyPair],
